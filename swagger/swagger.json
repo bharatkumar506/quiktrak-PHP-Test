@@ -1,0 +1,561 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "quiktrak"
+host: "localhost"
+basePath: "/quiktrak"
+tags:
+- name: "User Management"
+  description: ""
+schemes:
+- "http"
+paths:
+  /user:
+   get:
+      tags:
+      - "User Management"
+      summary: "Users List"
+      description: ""
+      operationId: "Users List"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      responses:
+        "200":
+          description: "Success"
+        "204":
+          description: "Empty"  
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+   post:
+      tags:
+      - "User Management"
+      summary: "Create Users"
+      description: ""
+      operationId: "createUsers"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Create user object"
+        required: true
+        schema:
+          $ref: "#/definitions/createuser"
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      responses:
+        "200":
+          description: "Success"
+        "400":
+          description: "Bad Request"
+   put:
+      tags:
+      - "User Management"
+      summary: "Update User"
+      description: "User Update"
+      operationId: "updateuser"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Update user object"
+        required: true
+        schema:
+          $ref: "#/definitions/updateuser"
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "User Id Not Found"
+        "400":
+          description: "Bad Request"
+  /user/updateStatus:  
+    post:
+      tags:
+      - "User Management"
+      summary: "Update user status"
+      description: ""
+      operationId: "updateuserstatus"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Update user status object"
+        required: true
+        schema:
+          $ref: "#/definitions/updateuserstatus"
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "User Id Not Found"
+        "400":
+          description: "Bad Request" 
+  /user/getUserById/{user_id}:
+    get:
+      tags:
+      - "User Management"
+      summary: "Find user by ID"
+      description: "Returns a single user"
+      operationId: "getuserById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "user_id"
+        in: "path"
+        description: "ID of user to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "User Id Not Found"
+      security:
+      - api_key: [] 
+  /timezones:
+   get:
+      tags:
+      - "Timezone Management"
+      summary: "Timezones List"
+      description: ""
+      operationId: "Timezones List"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      responses:
+        "200":
+          description: "Success"
+        "204":
+          description: "Empty"  
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+  /job:
+   get:
+      tags:
+      - "Jobs Management"
+      summary: "Jobs List"
+      description: ""
+      operationId: "Jobs List"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      responses:
+        "200":
+          description: "Success"
+        "204":
+          description: "Empty"  
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+   post:
+      tags:
+      - "Jobs Management"
+      summary: "Create Job"
+      description: ""
+      operationId: "createJob"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Create Job object"
+        required: true
+        schema:
+          $ref: "#/definitions/createjob"
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      responses:
+        "200":
+          description: "Success"
+        "400":
+          description: "Bad Request"
+   put:
+      tags:
+      - "Jobs Management"
+      summary: "Update Job"
+      description: "Job Update"
+      operationId: "updatejob"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Update job object"
+        required: true
+        schema:
+          $ref: "#/definitions/updatejob"
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "Job Id Not Found"
+        "400":
+          description: "Bad Request"
+  /job/updateStatus:  
+    post:
+      tags:
+      - "Jobs Management"
+      summary: "Update job status"
+      description: ""
+      operationId: "updatejobstatus"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Update job status object"
+        required: true
+        schema:
+          $ref: "#/definitions/updatejobstatus"
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "Job Id Not Found"
+        "400":
+          description: "Bad Request"
+  /job/getJobById/{job_id}:
+    get:
+      tags:
+      - "Jobs Management"
+      summary: "Find job by ID"
+      description: "Returns a single job"
+      operationId: "getjobById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "job_id"
+        in: "path"
+        description: "ID of job to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "Job Id Not Found"
+      security:
+      - api_key: [] 
+  /job/getJobTimezoneToYourTime/{job_id}/{yourTimezone_id}:
+    get:
+      tags:
+      - "Jobs Management"
+      summary: "Find Job Timezone to Your Time"
+      description: "Returns a Your time job"
+      operationId: "getJobTimezoneToYourTime"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "job_id"
+        in: "path"
+        description: "ID of job to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "yourTimezone_id"
+        in: "path"
+        description: "ID of your timezone"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "Job Id Not Found"
+      security:
+      - api_key: [] 
+  /job/assignjob:
+   post:
+      tags:
+      - "Jobs Management"
+      summary: "Assign Job"
+      description: "Assign Job"
+      operationId: "assignjob"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Assign job object"
+        required: true
+        schema:
+          $ref: "#/definitions/assignjob"
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "Job Id Not Found"
+        "400":
+          description: "Bad Request"
+  /job/submitinspection:
+   post:
+      tags:
+      - "Jobs Management"
+      summary: "Submit Inspection"
+      description: "Submit Inspection"
+      operationId: "submitinspection"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Submit Inspection object"
+        required: true
+        schema:
+          $ref: "#/definitions/submitinspection"
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      
+      responses:
+        "200":
+          description: "Success"
+        "404":
+          description: "Job Id Not Found"
+        "400":
+          description: "Bad Request"
+  /templates:
+   get:
+      tags:
+      - "Templates Management"
+      summary: "Templates List"
+      description: ""
+      operationId: "Templates List"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: token
+        in: header
+        description: an authorization header
+        required: true
+        type: string
+      responses:
+        "200":
+          description: "Success"
+        "204":
+          description: "Empty"  
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+definitions:
+  createuser:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      Name:
+        type: "string"
+        format: "doggie"
+      Email:
+        type: "string"
+        format: "doggie"
+  updateuser:
+    type: "object"
+    required:
+    - "userId"
+    properties:
+      userId:
+        type: "integer"
+        format: "int123"
+      Name:
+        type: "string"
+        format: "doggie"   
+  updateuserstatus:
+    type: "object"
+    required:
+    - "userId"
+    properties:
+      userId:
+        type: "integer"
+        format: "int123"
+      status:
+        type: "integer"
+        format: "int123"
+  createjob:
+    type: "object"
+    required:
+    - "title"
+    properties:
+      title:
+        type: "string"
+        format: "doggie"
+      type:
+        type: "integer"
+        format: "int123"
+      address:
+        type: "string"
+        format: "doggie"		
+      scheduledDateTime:
+        type: "string"
+        format: "date-time"
+      timezone:
+        type: "integer"
+        format: "int123"
+  updatejob:
+    type: "object"
+    required:
+    - "jobid"
+    properties:
+      jobId:
+        type: "integer"
+        format: "int123"
+      title:
+        type: "string"
+        format: "doggie"
+      type:
+        type: "integer"
+        format: "int123"
+      address:
+        type: "string"
+        format: "doggie"		
+      scheduledDateTime:
+        type: "string"
+        format: "date-time"
+      timezone:
+        type: "integer"
+        format: "int123"
+  updatejobstatus:
+    type: "object"
+    required:
+    - "jobId"
+    properties:
+      jobId:
+        type: "integer"
+        format: "int123"
+      status:
+        type: "integer"
+        format: "int123"
+  assignjob:
+    type: "object"
+    required:
+    - "jobId"
+    properties:
+      jobId:
+        type: "integer"
+        format: "int123"
+      assignedTo:
+        type: "integer"
+        format: "int123"
+  submitinspection:
+    type: "object"
+    required:
+    - "jobId"
+    properties:
+      jobId:
+        type: "integer"
+        format: "int123"
+      workstatus:
+        type: "integer"
+        format: "int123"
+      othernotes:
+        type: "string"
+        format: "doggie"
+      questionandanswers:
+        type: "array"
+        xml:
+          name: "questionandanswers"
+          wrapped: true
+        items:
+          $ref: "#/definitions/questionandanswers"
+  questionandanswers:
+    type: "object"
+    required:
+    - "questionid"
+    properties:
+      questionid:
+        type: "integer"
+        format: "int123"
+      answerid:
+        type: "integer"		
+        format: "int123"
+      commentsifany:
+        type: "string"
+        format: "doggie"		
